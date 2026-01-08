@@ -83,3 +83,26 @@
     margin-bottom: 10px;
     border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        margin: 20px 0;
+    }
+
+    .login-box {
+        width: 100%;
+        height: auto;
+        padding: 30px 15px;
+    }
+
+    .login-left {
+        height: 200px;
+    }
+
+    .login-heading {
+        font-size: 20px;
+    }
+}

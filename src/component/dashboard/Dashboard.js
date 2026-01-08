@@ -20,13 +20,24 @@ const Dashboard = () => {
         <div className='dashboard-wrapper'>
             <div className='side-nav'>
                 <div className='profile-info'>
-                    <img src={localStorage.getItem('photoURL')} />
+                    <img src={localStorage.getItem('photoURL')} alt='profile' />
                     <div>
                         <p>{localStorage.getItem('cName')}</p>
-                        <button onClick={logout}>Logout</button>
+                        <button onClick={logout} className="logout-btn">
+                            <span className="logout-text">Logout</span>
+                            <i className="fa-solid fa-right-from-bracket logout-icon"></i>
+                        </button>
                     </div>
                 </div>
                 <hr />
+
+                <input type="checkbox" id="menu-toggle" className="menu-checkbox" />
+                <label htmlFor="menu-toggle" className="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
                 <div className='menu'>
                     <Link to='/dashboard/home' className='menu-link'><i className="fa-solid fa-house"></i> Home</Link>
                     <Link to='/dashboard/invoices' className='menu-link'><i className="fa-solid fa-file-invoice"></i> Invoices</Link>

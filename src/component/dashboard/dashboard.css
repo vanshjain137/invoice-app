@@ -433,3 +433,149 @@ tfoot
     background-color: rgb(38, 23, 205);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
+.menu-checkbox, .hamburger, .logout-icon {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    
+    .dashboard-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .side-nav {
+        width: 100% !important;
+        height: auto;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: relative;
+    }
+
+    .main-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .profile-info p {
+        display: none; /* Hide company name text on mobile */
+    }
+
+    .logout-text {
+        display: none; /* Hide "Logout" text */
+    }
+
+    .logout-icon {
+        display: block; /* Show Logout icon instead */
+        font-size: 20px;
+        color: #f95800;
+        cursor: pointer;
+    }
+
+    .logout-btn {
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        order: 3; /* Keeps it on the right */
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        border-radius: 2px;
+    }
+
+    .menu {
+        display: none !important; /* Hidden by default */
+        width: 100%;
+        flex-direction: column;
+        order: 4; /* Pushes links below the top bar */
+        background-color: #1a1a1a;
+        margin-top: 10px;
+    }
+
+    .menu-checkbox:checked ~ .menu {
+        display: flex !important;
+    }
+
+    .main-container {
+        width: 100% !important;
+        padding: 15px;
+    }
+
+    .first-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .first-row input {
+        width: 100% !important;
+    }
+
+    .box {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .box p {
+        width: 100%;
+    }
+
+    .home-first-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .home-box {
+        width: 100%;
+        height: 150px;
+    }
+
+    .home-second-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .chart-box, .recent-invoice-list {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+    }
+
+    .invoice-wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .product-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .setting-wrapper {
+        width: 95%;
+    }
+}
