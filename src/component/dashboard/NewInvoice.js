@@ -10,39 +10,66 @@ const NewInvoice = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [qty, setQty] = useState(1)
-    const [total, setTotal] = useState(0)
+    const [taxInput, setTaxInput] = useState(0)
+    const [taxAmount, setTaxAmount] = useState(0)
     const [isLoading, setLoading] = useState(false)
 
     const [product, setProduct] = useState([])
 
     const navigate = useNavigate()
 
+    const subtotal = product.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
+
+    const total = subtotal + taxAmount
+
     const addProduct = () => {
-        setProduct([...product, { 'id': product.length, 'name': name, 'price': price, 'qty': qty }])
-        const t = qty * price
-        setTotal(total + t)
+        setProduct([...product, { 'id': product.length, 'name': name, 'price': Number(price), 'qty': Number(qty) }])
         setName('')
         setPrice('')
         setQty(1)
     }
 
+    const handleCalculateTax = () => {
+        const calculatedTax = (subtotal * Number(taxInput)) / 100
+        setTaxAmount(calculatedTax)
+    }
+
     const saveData = async () => {
-        setLoading(true)
-        console.log(to, phone, address)
-        console.log(product)
-        console.log(total)
-        const data = await addDoc(collection(db, 'invoices'), {
+        if (product.length === 0) {
+            alert("Please add at least one product");
+            return;
+        }
+
+        setLoading(true);
+
+        // Create the object first to keep code clean
+        const finalData = {
             to: to,
             phone: phone,
             address: address,
             product: product,
             total: total,
+            subtotal: subtotal,
+            tax: taxAmount,
+            taxPercentage: taxInput,
             uid: localStorage.getItem('uid'),
             date: Timestamp.fromDate(new Date())
-        })
-        console.log(data)
-        navigate('/dashboard/invoices')
-        setLoading(false)
+        };
+
+        try {
+            // Use 'docRef' to match your navigate logic
+            const docRef = await addDoc(collection(db, 'invoices'), finalData);
+
+            // Pass the finalData AND the new ID to the next page
+            navigate('/dashboard/invoice-detail', {
+                state: { ...finalData, id: docRef.id }
+            });
+        } catch (error) {
+            console.error("Error saving invoice:", error);
+            alert("Failed to save invoice");
+        }
+
+        setLoading(false);
     }
     return (
         <div>
@@ -84,8 +111,41 @@ const NewInvoice = () => {
                         </div>
                     ))
                 }
-                <div className='total-wrapper'>
-                    <p>Total : {total.toLocaleString('en-IN')}</p>
+
+                <div className='new-invoice-total-wrapper'>
+                    <div className='tax-input-section'>
+                        <p className='label'>APPLY TAX</p>
+                        <div className='tax-control-group'>
+                            <input
+                                type="number"
+                                step="any"
+                                placeholder="Tax %"
+                                value={taxInput}
+                                onChange={(e) => setTaxInput(e.target.value)}
+                                className='modern-tax-input'
+                            />
+                            <button onClick={handleCalculateTax} className='modern-tax-btn' type='button'>
+                                Calculate
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className='final-calculations'>
+                        <div className='calc-line'>
+                            <span>Subtotal</span>
+                            <span>₹{subtotal.toLocaleString('en-IN')}</span>
+                        </div>
+                        {taxAmount > 0 && (
+                            <div className='calc-line tax-line'>
+                                <span>Tax ({taxInput}%)</span>
+                                <span>+ ₹{taxAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        )}
+                        <div className='calc-line grand-total-line'>
+                            <span>Grand Total</span>
+                            <span>₹{total.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             }

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const Invoices = () => {
   const [invoices, setInvoices] = useState([])
   const [isLoading, setLoading] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -36,29 +37,51 @@ const Invoices = () => {
       }
     }
   }
+
+  const filteredInvoices = invoices.filter(invoice =>
+    invoice.to.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   return (
     <div>
       {isLoading ?
-        <div style={{display:'flex', height:'100vh', justifyContent:'center', alignItems:'center'}}>
-          <i style={{fontSize:30}} class="fa-solid fa-spinner fa-spin-pulse"></i>
+        <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
+          <i style={{ fontSize: 30 }} class="fa-solid fa-spinner fa-spin-pulse"></i>
         </div>
-        :<div>
-        {invoices.map(data => (
-          <div className='box' key={data.id}>
-            <p>{data.to}</p>
-            <p>{new Date(data.date.seconds * 1000).toLocaleDateString()}</p>
-            <p>Rs. {Number(data.total).toLocaleString('en-IN')}</p>
-            <button onClick={() => { deleteInvoice(data.id) }} className='delete-btn'><i className="fa-solid fa-trash"></i> Delete</button>
-            <button onClick={() => { navigate('/dashboard/invoice-detail', { state: data }) }} className='delete-btn view-btn'><i className="fa-solid fa-eye"></i> View</button>
+        : <div>
+          <div className='search-wrapper'>
+            <input
+              type="text"
+              placeholder="Search customer name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className='search-input'
+            />
+            <i className="fa-solid fa-magnifying-glass search-icon"></i>
           </div>
-        ))
-      }
-      {
-        invoices.length < 1 && <div className='no-invoice-wrapper'>
-          <p>You have no invoice till now</p>
-          <button onClick={()=>{navigate('/dashboard/new-invoice')}}>Create New Invoice</button>
-        </div>
-      }
+
+          {filteredInvoices.map(data => (
+            <div className='box' key={data.id}>
+              <p>{data.to}</p>
+              <p>{new Date(data.date.seconds * 1000).toLocaleDateString()}</p>
+              <p>Rs. {Number(data.total).toLocaleString('en-IN')}</p>
+              <button onClick={() => { deleteInvoice(data.id) }} className='delete-btn'><i className="fa-solid fa-trash"></i> Delete</button>
+              <button onClick={() => { navigate('/dashboard/invoice-detail', { state: data }) }} className='delete-btn view-btn'><i className="fa-solid fa-eye"></i> View</button>
+            </div>
+          ))
+          }
+
+          {invoices.length > 0 && filteredInvoices.length === 0 && (
+            <div className='no-invoice-wrapper'>
+              <p>No invoices found for "{searchQuery}"</p>
+            </div>
+          )}
+          {
+            invoices.length < 1 && <div className='no-invoice-wrapper'>
+              <p>You have no invoice till now</p>
+              <button onClick={() => { navigate('/dashboard/new-invoice') }}>Create New Invoice</button>
+            </div>
+          }
         </div>
       }
     </div>

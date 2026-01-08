@@ -3,12 +3,16 @@
     width: 100%;
     height: 100vh;
     display: flex;
+    overflow: hidden;
 }
 
 .side-nav
 {
     width: 20%;
     background-color: #282c34;
+    height: 100vh; 
+    position: sticky;
+    top: 0;
 }
 
 .main-container
@@ -16,6 +20,8 @@
     width: 80%;
     background-color: #eee;
     padding: 10px;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .profile-info
@@ -188,11 +194,14 @@
 
 .invoice-wrapper
 {
-    width: 50%;
     background-color: white;
-    min-height: 90vh;
-    margin: auto;
-    padding: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    min-height: 100%; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .invoice-header
@@ -229,6 +238,7 @@
     margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
+    table-layout: auto;
 }
 
 th
@@ -439,11 +449,228 @@ tfoot
 }
 
 
+
+.new-invoice-total-wrapper {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+    display: flex;
+    justify-content: space-between; /* Input on left, Totals on right */
+    align-items: flex-start;
+}
+
+.tax-input-section {
+    width: 250px;
+}
+
+.tax-control-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.modern-tax-input {
+    width: 80px !important;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modern-tax-btn {
+    background-color: #282c34;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.final-calculations {
+    width: 300px;
+    background-color: #fcfcfc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.calc-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    color: #555;
+}
+
+.tax-line {
+    color: #e63946;
+    font-size: 14px;
+}
+
+.grand-total-line {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid royalblue;
+    font-size: 20px;
+    font-weight: bold;
+    color: royalblue;
+}
+
+
+/* --- Professional Invoice Detail Styles --- */
+
+.invoice-wrapper {
+    background-color: white;
+    padding: 50px;
+    width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.company-brand h2 {
+    margin-top: 10px;
+    color: #333;
+}
+
+.invoice-meta {
+    text-align: right;
+}
+
+.invoice-meta h1 {
+    font-size: 40px;
+    color: royalblue;
+    margin: 0;
+}
+
+.divider {
+    border: 0;
+    border-top: 2px solid #eee;
+    margin: 20px 0;
+}
+
+.billing-section {
+    margin-bottom: 40px;
+}
+
+.label {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.product-table th {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #eee;
+    color: #555;
+}
+
+.product-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-footer-total {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-calculations {
+    width: 300px;
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.grand-total-row {
+    border-top: 2px solid royalblue;
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: royalblue;
+}
+
+.invoice-note {
+    margin-top: 50px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    text-align: center;
+    color: #999;
+}
+
+.print-btn {
+    margin: 20px;
+    background-color: #282c34;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    border-color: royalblue;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
 @media (max-width: 768px) {
     
     .dashboard-wrapper {
         flex-direction: column;
         height: auto;
+        overflow: visible;
     }
 
     .side-nav {
@@ -459,7 +686,9 @@ tfoot
     }
 
     .main-container {
-        width: 100%;
+        width: 100% !important;
+        height: auto;
+        overflow: visible;
         padding: 15px;
     }
 
@@ -577,5 +806,13 @@ tfoot
 
     .setting-wrapper {
         width: 95%;
+    }
+
+    .new-invoice-total-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .tax-input-section, .final-calculations {
+        width: 100%;
     }
 }
