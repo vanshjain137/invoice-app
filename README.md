@@ -19,18 +19,18 @@ A professional React-based web application for managing business invoices, track
 
 ### Desktop Experience
 <p align="center">
-  <img src="./assets/dashboard.png" width="48%" alt="Main Dashboard" />
-  <img src="./assets/invoices.png" width="48%" alt="Invoice Filtering" />
+  <img src="./src/assets/dashboard.png" width="48%" alt="Main Dashboard" />
+  <img src="./src/assets/invoices.png" width="48%" alt="Invoice Filtering" />
 </p>
 <p align="center">
-  <img src="./assets/create-invoice.png" width="48%" alt="Invoice Creation" />
-  <img src="./assets/invoice-detail.png" width="48%" alt="Final PDF View" />
+  <img src="./src/assets/create-invoice.png" width="48%" alt="Invoice Creation" />
+  <img src="./src/assets/invoice-detail.png" width="48%" alt="Final PDF View" />
 </p>
 
 ### Mobile Responsiveness
 <p align="center">
-  <img src="./assets/mobile-dashboard.png" width="30%" alt="Mobile Dashboard" />
-  <img src="./assets/mobile-menu.png" width="30%" alt="Mobile Navigation" />
+  <img src="./src/assets/mobile-dashboard.png" width="30%" alt="Mobile Dashboard" />
+  <img src="./src/assets/mobile-menu.png" width="30%" alt="Mobile Navigation" />
 </p>
 
 ---
