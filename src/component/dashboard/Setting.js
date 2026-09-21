@@ -88,7 +88,7 @@ const Setting = () => {
         <div className='profile-info update-cName'>
           <img onClick={() => { fileInputRef.current.click() }} className='pro' alt="profile-pic" src={imageUrl} />
           <input onChange={(e) => { onSelectFile(e) }} style={{ display: 'none' }} type='file' ref={fileInputRef} />
-          {file && <button onClick={() => { updateLogo() }} style={{width:'30%', padding:'10px', backgroundColor:'#f95800'}}> {isLoading && <i class="fa-solid fa-spinner fa-spin-pulse"></i>} Update Profile Pic</button>}
+          {file && <button onClick={() => { updateLogo() }} style={{width:'30%', padding:'10px', backgroundColor:'#f95800'}}> {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>} Update Profile Pic</button>}
         </div>
 
         <div className='update-cName'>

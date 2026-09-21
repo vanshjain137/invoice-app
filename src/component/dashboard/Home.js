@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const [total, setTotal] = useState(0)
-  const [totalInvoice, setTotalInvoice] = useState(1423)
   const [totalMonthCollection, setTotalMonthCollection] = useState(34563)
   const [invoices, setInvoices] = useState([])
 
@@ -15,21 +14,23 @@ const Home = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    getData()
-  }, [])
 
-  const getData = async () => {
-    const q = query(collection(db, "invoices"), where('uid', "==", localStorage.getItem('uid')), orderBy('date', 'desc'))
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
-    setInvoices(data)
-    getOverAllTotal(data)
-    getMonthsTotal(data)
-    monthWiseCollection(data)
-  }
+    const getData = async () => {
+      const q = query(collection(db, "invoices"), where('uid', "==", localStorage.getItem('uid')), orderBy('date', 'desc'))
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setInvoices(data)
+      getOverAllTotal(data)
+      getMonthsTotal(data)
+      monthWiseCollection(data)
+    }
+
+    getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const getOverAllTotal = (invoiceList) => {
     var t = 0;
@@ -42,7 +43,7 @@ const Home = () => {
   const getMonthsTotal = (invoiceList) => {
     var mt = 0;
     invoiceList.forEach(data => {
-      if (new Date(data.date.seconds * 1000).getMonth() == new Date().getMonth()) {
+      if (new Date(data.date.seconds * 1000).getMonth() === new Date().getMonth()) {
         mt += data.total
       }
     })
@@ -66,7 +67,7 @@ const Home = () => {
     }
 
     data.forEach(d => {
-      if (new Date(d.date.seconds * 1000).getFullYear() == new Date().getFullYear()) {
+      if (new Date(d.date.seconds * 1000).getFullYear() === new Date().getFullYear()) {
         chartData[new Date(d.date.seconds * 1000).toLocaleDateString('default', { month: 'long' })] += d.total
       }
     })

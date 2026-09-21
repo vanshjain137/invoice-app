@@ -75,7 +75,7 @@ const NewInvoice = () => {
         <div>
             <div className='header-row'>
                 <p className='new-invoice-heading'>New Invoice</p>
-                <button onClick={saveData} className='add-btn' type='button'>{isLoading && <i class="fa-solid fa-spinner fa-spin-pulse"></i>} Save Data</button>
+                <button onClick={saveData} className='add-btn' type='button'>{isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>} Save Data</button>
             </div>
             <form className='new-invoice-form'>
                 <div className='first-row'>

@@ -46,7 +46,7 @@ const Invoices = () => {
     <div>
       {isLoading ?
         <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
-          <i style={{ fontSize: 30 }} class="fa-solid fa-spinner fa-spin-pulse"></i>
+          <i style={{ fontSize: 30 }} className="fa-solid fa-spinner fa-spin-pulse"></i>
         </div>
         : <div>
           <div className='search-wrapper'>

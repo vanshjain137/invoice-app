@@ -94,8 +94,8 @@ const Register = () => {
                         <input required onChange={(e) => { setPassword(e.target.value) }} className='login-input' type='password' placeholder='Password' />
                         <input required onChange={(e) => {onSelectFile(e)}} style={{ display: 'none' }} className='login-input' type='file' ref={fileInputRef} />
                         <input required className='login-input' type='button' value='Select Your Logo' onClick={() => { fileInputRef.current.click() }} />
-                        {imageUrl != null && <img className='image-preview' src={imageUrl} alt="preview" />}
-                        <button className='login-input login-btn' type="submit"> {isLoading && <i class="fa-solid fa-spinner fa-spin-pulse"></i>} Submit</button>
+                        {imageUrl !== null && <img className='image-preview' src={imageUrl} alt="preview" />}
+                        <button className='login-input login-btn' type="submit"> {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>} Submit</button>
                     </form>
                     <Link to='/login' className='register-link'>Login With Your Account</Link>
                 </div>
