@@ -1,11 +1,10 @@
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
-import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const InvoiceDetail = () => {
     const location = useLocation()
-    const [data, setData] = useState(location.state)
+    const data = location.state
 
     const printInvoice = () => {
         const input = document.getElementById('invoice')
