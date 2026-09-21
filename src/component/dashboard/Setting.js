@@ -5,8 +5,6 @@ import { doc, updateDoc } from 'firebase/firestore'
 
 const Setting = () => {
   const fileInputRef = useRef(null)
-  const [email, setEmail] = useState(localStorage.getItem('email'))
-  const [password, setPassword] = useState('')
   const [file, setFile] = useState(null)
   const [displayName, setDisplayName] = useState(localStorage.getItem('cName'))
   const [imageUrl, setImageUrl] = useState(localStorage.getItem('photoURL'))
